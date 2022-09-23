@@ -29,14 +29,14 @@ def tryParseString(string):
 def readChoice():
     try:
         choice = input('Вы хотите ввести числа сами? (y/n)')
-        if (choice.lower() != 'y' and choice.lower() != 'n'):
+        if choice.lower() != 'y' and choice.lower() != 'n':
             raise Exception
     except:
         readChoice()
     if choice.lower() == 'y':
         return True
-
     return False
+
 
 if readChoice():
     inputString = input('введите числа через пробел')
