@@ -5,3 +5,4 @@ class ElementNotInList(Exception):
 
     def __call__(self):
         return f'{self.text}', self.previousInt
+

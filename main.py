@@ -26,8 +26,22 @@ def tryParseString(string):
     except:
         return 'Не удалось распарсить строку'
 
+def readChoice():
+    try:
+        choice = input('Вы хотите ввести числа сами? (y/n)')
+        if (choice.lower() != 'y' and choice.lower() != 'n'):
+            raise Exception
+    except:
+        readChoice()
+    if choice.lower() == 'y':
+        return True
 
-inputString = '1 25 2 12 4 9 26 17 5 7 11'
+    return False
+
+if readChoice():
+    inputString = input('введите числа через пробел')
+else:
+    inputString = '1 25 2 12 4 9 26 17 5 7 11'
 inputInt = int(input('введите любое число, только целое =) '))
 
 arr = tryParseString(inputString)
