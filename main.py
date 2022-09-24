@@ -4,21 +4,24 @@ from exception import ElementNotInList
 def binary_search(array: [], x: int, lo=0, hi=None):
     if hi is None:
         hi = len(array)
+    if x < array[-1]:
+        while lo < hi:
+            mid = (lo + hi) // 2
+            midVal = array[mid]
+            if midVal < x:
+                lo = mid + 1
+            elif midVal > x:
+                hi = mid
+            else:
+                return mid - 1
+    else:
+        raise ElementNotInList('Элемент не входит в список', len(array) - 1)
+    raise ElementNotInList('Элемент не входит в список', mid - 1)
 
-    while lo < hi:
-        mid = (lo + hi) // 2
-        midVal = array[mid]
-        if midVal < x:
-            lo = mid + 1
-        elif midVal > x:
-            hi = mid
-        else:
-            return mid - 1
-    raise ElementNotInList('Элемент не входит в список', array.index(mid - 1))
 
-
-def tryParseString(string):
+def try_parse_string(string):
     try:
+        string = string.strip()
         _array = string.split(' ')
         _array = list(map(int, _array))
         _array.sort()
@@ -26,25 +29,27 @@ def tryParseString(string):
     except:
         return 'Не удалось распарсить строку'
 
-def readChoice():
+
+def read_choice():
     try:
         choice = input('Вы хотите ввести числа сами? (y/n)')
         if choice.lower() != 'y' and choice.lower() != 'n':
             raise Exception
     except:
-        readChoice()
+        read_choice()
     if choice.lower() == 'y':
         return True
     return False
 
 
-if readChoice():
-    inputString = input('введите числа через пробел')
+if read_choice():
+    inputString = input('введите числа через пробел ')
+    print(inputString)
 else:
     inputString = '1 25 2 12 4 9 26 17 5 7 11'
-inputInt = int(input('введите любое число, только целое =) '))
+inputInt = int(input('введите любое число для поиска, только целое =) '))
 
-arr = tryParseString(inputString)
+arr = try_parse_string(inputString)
 result = None
 resultMsg = None
 
